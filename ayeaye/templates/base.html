@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>
+            AyeAye!
+        </title>
+    </head>
+    <body>
+        <a href="{% url 'home' %}">Home</a>
+        <hr>
+        <form action=".">
+            <label for="search-box">Search Term: </label>
+            <input id='search-box' type="text">
+            <input type="button" value="Search" onclick="search()">
+        </form>
+        {% block 'content' %}
+        {% endblock 'content' %}
+    </body>
+    <script>
+        function search(){
+            url = "/" + document.getElementById('search-box').value;
+            if(window.location.href.split("/")[3]=='yts'){
+                window.location.href = '/yts/search' + url;
+            }
+            else if(window.location.href.split("/")[3]=='eztv'){
+                window.location.href = '/eztv/search' + url;
+            }
+        }
+    </script>
+</html>

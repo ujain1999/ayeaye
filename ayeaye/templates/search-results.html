@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block 'content' %}
+    <p>Using {{ service_name|upper }} | {{ data|length}} results found</p>
+
+    <table border="1">
+        <tr>
+            {% for key,value in data.0.items %}
+                <th>{{ key|capfirst }}</th>
+            {% endfor%}
+        </tr>
+        {% for result in data %}
+            <tr>
+            {% for k,v in result.items %}
+                <!-- <td>{{ v }}</td> -->
+                {% if k == "image_url" %}
+                    <td><img src={{ v }}></td>
+                {% elif k == "magnet_link" %}
+                    <td><a href={{ v }}>Download</a></td>
+                {% else %}
+                    <td>{{ v }}</td>
+                {% endif %}
+            {% endfor %}
+            </tr>
+
+        {% endfor %}
+    </table>
+{% endblock 'content' %}
